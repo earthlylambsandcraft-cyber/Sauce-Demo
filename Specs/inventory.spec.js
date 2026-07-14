@@ -201,17 +201,17 @@ test('Badge Count', async ({login, inventory}) => {
 })
 
 
-for(options of sortingOptions) {
+for(const options of sortingOptions) {
 
 
-    test(`Sort ${option}`, async ({login, inventory}) => {
+    test(`Sort ${options}`, async ({login, inventory}) => {
     
     await login.login(
         users.standardUser.username,
         users.standardUser.password
     );
 
-    await inventory.sortBy(option);
+    await inventory.sortBy(options);
 
     console.log(
         await inventory.getProductSummary()
