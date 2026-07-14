@@ -1,5 +1,6 @@
 const { test, expect } = require("../Fixtures/pageFixtures");
 const { productNames } = require("../Data/items")
+const { users } =require("../Data/users")
 
 test.use ({
     launchOptions:  {
@@ -14,8 +15,8 @@ test.setTimeout(14000);
 test('Inventory page should load', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.verifyInventoryPage();
@@ -24,8 +25,8 @@ test('Inventory page should load', async ({login, inventory}) => {
 test('Product count', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     const count =
@@ -38,8 +39,8 @@ test('Product count', async ({login, inventory}) => {
 test('Product names', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     console.log(
@@ -51,8 +52,8 @@ test('Product names', async ({login, inventory}) => {
 test('Product descriptions', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     console.log(
@@ -64,8 +65,8 @@ test('Product descriptions', async ({login, inventory}) => {
 test('Product prices', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     console.log(
@@ -77,8 +78,8 @@ test('Product prices', async ({login, inventory}) => {
 test('Product summary', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     console.log(
@@ -90,8 +91,8 @@ test('Product summary', async ({login, inventory}) => {
 test('Add one product', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(
@@ -107,8 +108,8 @@ test('Add one product', async ({login, inventory}) => {
 test('Add multiple products', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(
@@ -131,8 +132,8 @@ test('Add multiple products', async ({login, inventory}) => {
 test('Remove one product', async ({login, inventory}) => {
    
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(
@@ -152,8 +153,8 @@ test('Remove one product', async ({login, inventory}) => {
 test('Open Cart', async ({login, cart, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.openCart();
@@ -165,8 +166,8 @@ test('Open Cart', async ({login, cart, inventory}) => {
 test('Badge Count', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -181,8 +182,8 @@ test('Badge Count', async ({login, inventory}) => {
 test('Sort A-Z', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.sortBy(
@@ -198,8 +199,8 @@ test('Sort A-Z', async ({login, inventory}) => {
 test('Sort Z-A', async ({login, inventory}) => {
     
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.sortBy(
@@ -215,8 +216,8 @@ test('Sort Z-A', async ({login, inventory}) => {
 test('Sort Low-High', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.sortBy(
@@ -233,8 +234,8 @@ test('Sort Low-High', async ({login, inventory}) => {
 test('Sort High-Low', async ({login, inventory}) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.sortBy(

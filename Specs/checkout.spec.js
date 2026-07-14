@@ -1,5 +1,6 @@
 const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require('../Data/items')
+const { users } = require('../Data/users')
 
 test.use ({
     launchOptions: {
@@ -18,8 +19,8 @@ test('Should verify checkout page', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -41,8 +42,8 @@ test('Should sort badge count', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -67,8 +68,8 @@ test('Should fill first name', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -89,8 +90,8 @@ test('Should fill last name', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -111,8 +112,8 @@ test('Should fill zip code', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -133,8 +134,8 @@ test('Should fill customer information', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -155,8 +156,8 @@ test('Should check out order', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -181,8 +182,8 @@ test('Should continue check out order', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -205,8 +206,8 @@ test('Can cancel check out order', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);

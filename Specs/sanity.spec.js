@@ -1,5 +1,6 @@
 const {test, expect} = require('../Fixtures/pageFixtures');
-const { productNames } = require('../Data/items') 
+const { productNames } = require('../Data/items');
+const{ users } = require('../Data/users'); 
 
 test.use({
     launchOptions: {
@@ -22,8 +23,8 @@ test('Sanity || Complete purchase flow', async({
     await login.verifyPage();
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.verifyInventoryPage();

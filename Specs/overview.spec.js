@@ -1,5 +1,6 @@
 const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require('../Data/items');
+const { users } = require('../Data/users')
 
 test.use ({
     launchOptions: {
@@ -21,8 +22,8 @@ test('Overview should load', async({
     
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -48,8 +49,8 @@ test('Products Summary', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -77,8 +78,8 @@ test('Payment Information', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -106,8 +107,8 @@ test('Shipping Information', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -135,8 +136,8 @@ test('Subtotal', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -164,8 +165,8 @@ test('Tax', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -193,8 +194,8 @@ test('Total', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -222,8 +223,8 @@ test('Cancel Order', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -251,8 +252,8 @@ test('Finish Order', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -282,8 +283,8 @@ test('Badge Count', async({
 }) => {
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);

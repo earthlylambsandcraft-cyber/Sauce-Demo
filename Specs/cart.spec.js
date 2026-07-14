@@ -1,5 +1,6 @@
 const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require("../Data/items");
+const { users } = require("../Data/users")
 
 test.use({
     launchOptions: {
@@ -30,8 +31,8 @@ test('Cart should open upon clicking', async({login, cart}) => {
 test('Cart should display products', async({login, inventory, cart}) => {    
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
 
@@ -50,8 +51,8 @@ test('Cart should display products', async({login, inventory, cart}) => {
 test('Cart should display prices', async({login, inventory, cart}) => {    
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -70,8 +71,8 @@ test('Cart should display quantities', async({login, inventory, cart}) => {
 
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -89,8 +90,8 @@ test('Cart should display quantities', async({login, inventory, cart}) => {
 test('Continue shopping', async({login, inventory, cart}) => {    
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -107,8 +108,8 @@ test('Continue shopping', async({login, inventory, cart}) => {
 test('Checkout Navigation', async({login, inventory, cart, checkout}) => {    
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
@@ -123,7 +124,10 @@ test('Checkout Navigation', async({login, inventory, cart, checkout}) => {
 
 test('Remove one item', async({login, inventory, cart}) => {    
 
-    await login.login('standard_user', 'secret_sauce');
+    await login.login(
+        users.standardUser.username,
+        users.standardUser.password
+    );
 
     await inventory.addProduct(
         productNames.backpack
@@ -143,7 +147,10 @@ test('Remove one item', async({login, inventory, cart}) => {
 
 test('Remove all items', async({login, inventory, cart}) => {    
 
-    await login.login('standard_user', 'secret_sauce');
+    await login.login(
+        users.standardUser.username,
+        users.standardUser.password
+    );
 
     await inventory.addProduct(
         productNames.backpack
@@ -178,7 +185,10 @@ test('Remove all items', async({login, inventory, cart}) => {
 test('Empty cart', async({login, inventory, cart}) => {    
 
     
-    await login.login('standard_user', 'secret_sauce');
+    await login.login(
+        users.standardUser.username,
+        users.standardUser.password
+    );
 
     await cart.open();
 
@@ -191,8 +201,8 @@ test('Empty cart', async({login, inventory, cart}) => {
 test('Badge Updates', async({login, inventory, cart}) => {    
 
     await login.login(
-        'standard_user',
-        'secret_sauce'
+        users.standardUser.username,
+        users.standardUser.password
     );
 
     await inventory.addProduct(productNames.backpack);
