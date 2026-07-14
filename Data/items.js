@@ -1,32 +1,46 @@
 const productNames = {
 
-    backpack: "Sauce Labs Backpack",
+        backpack: "Sauce Labs Backpack",
+        bikeLight: "Sauce Labs Bike Light",
+        boltShirt: "Sauce Labs Bolt T-Shirt",
+        fleeceJacket: "Sauce Labs Fleece Jacket",
+        onesie: "Sauce Labs Onesie",
+        redShirt: "Test.allTheThings() T-Shirt (Red)",
+     
 
-    bikeLight: "Sauce Labs Bike Light",
-
-    boltShirt: "Sauce Labs Bolt T-Shirt",
-
-    fleeceJacket: "Sauce Labs Fleece Jacket",
-
-    onesie: "Sauce Labs Onesie",
-
-    redShirt: "Test.allTheThings() T-Shirt (Red)"
-
-}
+},
 
 const products = [
 
-    productNames.backpack,
-
-    productNames.bikeLight,
-
-    productNames.boltShirt,
-
-    productNames.fleeceJacket,
-
-    productNames.onesie,
-
-    productNames.redShirt,
+    {
+        name: "Sauce Labs Backpack",
+        price:"$29.99"
+    },
+    
+    {
+        name: "Sauce Labs Bike Light",
+        price:"$9.99"
+    },
+    
+    {
+        name: "Sauce Labs Bolt T-Shirt",
+        price:"$15.99"
+    },
+    
+    {
+        name: "Sauce Labs Fleece Jacket",
+        price:"$49.99"
+    },
+    
+    {
+        name: "Sauce Labs Onesie",
+        price:"$7.99"
+    },
+    
+    {
+        name: "Test.allTheThings() T-Shirt (Red)",
+        price:"$15.99"
+    }
 ];
 
 

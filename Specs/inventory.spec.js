@@ -14,7 +14,7 @@ test.setTimeout(14000);
 
 for (const product of products) {
 
-    test(`Add ${product}`, async({
+    test(`Add ${product.name}`, async({
         login, 
         inventory
     }) => {
@@ -24,7 +24,9 @@ for (const product of products) {
         users.standardUser.password
     );
 
-    await inventory.addProduct(product);
+    await inventory.addProduct(
+        product.name
+    );
 
     console.log(
         await inventory.getBadgeCount()
@@ -85,18 +87,29 @@ test('Product descriptions', async ({login, inventory}) => {
 
 })
 
-test('Product prices', async ({login, inventory}) => {
+for(const product of products) {
 
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
+    test(`Validate price ${product.name}`, async({
+        login, 
+        inventory
+    }) => {
 
-    console.log(
-    await inventory.getProductPrices()
-    );
+        await login.login(
+            users.standardUser.username,
+            users.standardUser.password
+        );
 
-})
+        
+        const price =
+        await inventory.getProductPrices(product.name);
+        
+
+        expect(price)
+        .toBe(product.price)
+        
+    });
+
+}
 
 test('Product summary', async ({login, inventory}) => {
     
@@ -127,6 +140,8 @@ test('Add one product', async ({login, inventory}) => {
     );
 
 })
+
+
 
 test('Add multiple products', async ({login, inventory}) => {
 

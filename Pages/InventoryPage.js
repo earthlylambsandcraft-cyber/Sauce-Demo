@@ -139,6 +139,21 @@ async getProductDescriptions() {
 
 }
 
+async getProductPrice(productName){
+
+    const item =
+    this.page.locator('.inventory_item')
+    .filter({
+        hasText: productName
+    });
+
+
+    return await item
+    .locator('.inventory_item_price')
+    .textContent();
+
+}
+
 async getProductPrices() {
 
     const prices = [];
