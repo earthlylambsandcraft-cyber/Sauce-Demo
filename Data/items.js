@@ -14,9 +14,26 @@ const productNames = {
 
 }
 
+const products = [
+
+    productNames.backpack,
+
+    productNames.bikeLight,
+
+    productNames.boltShirt,
+
+    productNames.fleeceJacket,
+
+    productNames.onesie,
+
+    productNames.redShirt,
+];
+
 
 module.exports = {
 
-    productNames
+    productNames,
+
+    products
 
 };

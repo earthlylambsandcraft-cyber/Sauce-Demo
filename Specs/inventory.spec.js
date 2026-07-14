@@ -1,6 +1,8 @@
 const { test, expect } = require("../Fixtures/pageFixtures");
-const { productNames } = require("../Data/items")
-const { users } =require("../Data/users")
+const { productNames, products } = require("../Data/items");
+const { users } =require("../Data/users");
+const { sortingOptions } = require("../Data/sorting");
+
 
 test.use ({
     launchOptions:  {
@@ -10,6 +12,27 @@ test.use ({
 
 test.setTimeout(14000);
 
+for (const product of products) {
+
+    test(`Add ${product}`, async({
+        login, 
+        inventory
+    }) => {
+
+    await login.login(
+        users.standardUser.username,
+        users.standardUser.password
+    );
+
+    await inventory.addProduct(product);
+
+    console.log(
+        await inventory.getBadgeCount()
+    );
+
+});
+
+}
 
 
 test('Inventory page should load', async ({login, inventory}) => {
@@ -178,71 +201,23 @@ test('Badge Count', async ({login, inventory}) => {
 })
 
 
+for(options of sortingOptions) {
 
-test('Sort A-Z', async ({login, inventory}) => {
+
+    test(`Sort ${option}`, async ({login, inventory}) => {
     
     await login.login(
         users.standardUser.username,
         users.standardUser.password
     );
 
-    await inventory.sortBy(
-    'Name (A to Z)'
-    );
+    await inventory.sortBy(option);
 
     console.log(
-        await inventory.getProductNames()
+        await inventory.getProductSummary()
     );
 
-})
+});
 
-test('Sort Z-A', async ({login, inventory}) => {
-    
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
+}
 
-    await inventory.sortBy(
-    'Name (Z to A)'
-    );
-
-    console.log(
-        await inventory.getProductNames()
-    );
-
-})
-
-test('Sort Low-High', async ({login, inventory}) => {
-
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
-
-    await inventory.sortBy(
-    'Price (low to high)'
-    );
-
-    console.log(
-        await inventory.getProductPrices()
-    );
-
-})
-
-
-test('Sort High-Low', async ({login, inventory}) => {
-
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
-
-    await inventory.sortBy(
-    'Price (high to low)'
-    );
-
-    console.log(
-        await inventory.getProductPrices()
-    );
-})
