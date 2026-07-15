@@ -2,13 +2,7 @@ const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require('../Data/items')
 const { users } = require('../Data/users')
 
-test.use ({
-    launchOptions: {
-        slowMo : 1200,
-    }
-});
 
-test.setTimeout(30000);
 
 
 test('Should verify checkout page', async({

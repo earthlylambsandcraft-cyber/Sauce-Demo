@@ -93,7 +93,7 @@ for(const product of products) {
 
         
         const price =
-        await inventory.getProductPrices(product.name);
+        await inventory.getProductPrice(product.name);
         
 
         expect(price)

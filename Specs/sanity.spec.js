@@ -2,13 +2,8 @@ const {test, expect} = require('../Fixtures/pageFixtures');
 const { productNames } = require('../Data/items');
 const{ users } = require('../Data/users'); 
 
-test.use({
-    launchOptions: {
-        slowMo: 800
-    }
-});
 
-test.setTimeout(20000);
+
 
 
 

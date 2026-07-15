@@ -8,7 +8,7 @@ const productNames = {
         redShirt: "Test.allTheThings() T-Shirt (Red)",
      
 
-},
+};
 
 const products = [
 

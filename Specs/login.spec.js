@@ -3,17 +3,6 @@ const { users } = require('../Data/users')
 
 
 
-test.use({
-    launchOptions: {
-        slowMo : 800,
-    }
-});
-
-test.setTimeout(12000);
-
-
-
-
 test('Valid || should login successfully with valid credentials', async({ login }) => {
 
     

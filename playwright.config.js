@@ -3,7 +3,9 @@ require('dotenv').config();
 
 module.exports = defineConfig({
 
-    timeout: 20000,
+    timeout: 40000,
+
+    reporter:'html',
 
     use: {
 

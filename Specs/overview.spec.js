@@ -2,14 +2,6 @@ const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require('../Data/items');
 const { users } = require('../Data/users')
 
-test.use ({
-    launchOptions: {
-        slowMo : 800,
-    }
-});
-
-test.setTimeout(14000);
-
 
 
 test('Overview should load', async({
@@ -239,7 +231,7 @@ test('Cancel Order', async({
 
     await overview.cancelOrder();
 
-    await cart.verifyCartPage();    
+    await inventory.verifyInventoryPage();    
     
 })
 

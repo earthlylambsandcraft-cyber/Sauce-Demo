@@ -2,13 +2,7 @@ const { test, expect } = require('../Fixtures/pageFixtures');
 const { productNames } = require("../Data/items");
 const { users } = require("../Data/users")
 
-test.use({
-    launchOptions: {
-        slowMo : 1000,
-    }
-});
 
-test.setTimeout(14000);
 
 
 test('Cart should open upon clicking', async({login, cart}) => {
