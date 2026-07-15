@@ -1,0 +1,35 @@
+# ==========================
+# Dependencies
+# ==========================
+node_modules/
+
+# ==========================
+# Environment Variables
+# ==========================
+.env
+
+# ==========================
+# Playwright Artifacts
+# ==========================
+test-results/
+playwright-report/
+trace/
+videos/
+
+# ==========================
+# Logs
+# ==========================
+*.log
+npm-debug.log*
+
+# ==========================
+# Operating System Files
+# ==========================
+.DS_Store
+Thumbs.db
+
+# ==========================
+# VS Code Workspace Settings
+# (Personal preferences only)
+# ==========================
+.vscode/

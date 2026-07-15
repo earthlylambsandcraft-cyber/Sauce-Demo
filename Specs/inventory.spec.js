@@ -4,14 +4,6 @@ const { users } =require("../Data/users");
 const { sortingOptions } = require("../Data/sorting");
 
 
-test.use ({
-    launchOptions:  {
-        slowMo : 800,
-    }
-});
-
-test.setTimeout(14000);
-
 for (const product of products) {
 
     test(`Add ${product.name}`, async({

@@ -4,7 +4,7 @@ function registerHooks(test) {
 
     test.beforeEach(async({page}) => {
 
-        await page.goto('https://saucedemo.com');
+        await page.goto('/');
 
     });
 
