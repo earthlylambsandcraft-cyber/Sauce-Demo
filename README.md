@@ -220,8 +220,8 @@ Stores reusable login credentials for different user types.
 Example:
 
 ```javascript
-users.standardUser.username
-users.standardUser.password
+const username = users.standardUser.username;
+const password = users.standardUser.password;
 
 ```
 
@@ -342,7 +342,7 @@ Covered scenarios:
 
 ---
 
-## End-to-End Sanity
+## End-to-End Purchase Flow
 
 Critical user workflow validation covering:
 
@@ -359,3 +359,12 @@ Overview
     ↓
 Finish Order
 ```
+
+Each directory has a dedicated responsibility within the framework:
+
+- **Pages** – Contains Page Object Model classes responsible for UI interactions.
+- **Specs** – Contains automated test scenarios and assertions.
+- **Fixtures** – Creates and injects reusable Page Object instances into tests.
+- **Hooks** – Handles common setup and teardown actions.
+- **Data** – Stores reusable test data such as users, products, and sorting options.
+- **Utils** – Contains reusable helper classes used across the framework.
