@@ -1,8 +1,17 @@
 # Sauce Demo Playwright Automation Framework
+![Playwright](https://img.shields.io/badge/Playwright-Automation-green)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![Node.js](https://img.shields.io/badge/Node.js-20+-green)
+![Status](https://img.shields.io/badge/Status-Active-blue)
 
 ## Overview
 
 This project is an end-to-end UI automation framework built using Playwright and JavaScript.
+
+Application Under Test:
+
+https://www.saucedemo.com/
+
 
 The framework automates the Sauce Demo e-commerce application and validates critical user workflows including:
 
@@ -14,6 +23,20 @@ The framework automates the Sauce Demo e-commerce application and validates crit
 - Order completion
 
 The framework was designed using industry-standard automation practices to improve maintainability, scalability, and test reusability.
+
+# Table of Contents
+
+- Overview
+- Tech Stack
+- Framework Architecture
+- Framework Design
+  - Page Object Model
+  - Custom Fixtures
+  - Hooks
+  - Data Driven Testing
+- Test Coverage
+- Installation
+- Running Tests
 
 ---
 
@@ -68,6 +91,14 @@ Sauce Demo Automation Framework
 └── README.md
 ```
 
+Each directory has a dedicated responsibility within the framework:
+
+- **Pages** – Contains Page Object Model classes responsible for UI interactions.
+- **Specs** – Contains automated test scenarios and assertions.
+- **Fixtures** – Creates and injects reusable Page Object instances into tests.
+- **Hooks** – Handles common setup and teardown actions.
+- **Data** – Stores reusable test data such as users, products, and sorting options.
+- **Utils** – Contains reusable helper classes used across the framework.
 
 
 ---
@@ -94,7 +125,7 @@ Example Page Objects:
 
 
 
-This separates test scenarios from UI implementation details.
+This separation keeps test scenarios independent from UI implementation details, making locator updates easier and reducing maintenance effort.
 
 Benefits:
 
@@ -288,7 +319,9 @@ Benefits:
 
 # Test Coverage
 
-The framework currently automates the following application modules and workflows.
+The framework currently automates the core functionality of the Sauce Demo application.
+
+The following modules and user workflows are covered by the automated test suite:
 
 ## Login
 
@@ -314,7 +347,7 @@ Covered scenarios:
 - Product sorting
 - Product data validation
 - UI assertions
-- Product data validation
+
 
 ---
 
@@ -365,22 +398,23 @@ Overview
 Finish Order
 ```
 
-Each directory has a dedicated responsibility within the framework:
-
-- **Pages** – Contains Page Object Model classes responsible for UI interactions.
-- **Specs** – Contains automated test scenarios and assertions.
-- **Fixtures** – Creates and injects reusable Page Object instances into tests.
-- **Hooks** – Handles common setup and teardown actions.
-- **Data** – Stores reusable test data such as users, products, and sorting options.
-- **Utils** – Contains reusable helper classes used across the framework.
-
-
-
 ---
+
+# Prerequisites
+
+Ensure the following software is installed before running the framework:
+
+- Node.js (v20 or later)
+- npm
+- Git
+- Visual Studio Code (recommended)
 
 # Installation
 
+
 ## Clone the Repository
+
+To run the framework locally, complete the following setup steps:
 
 ```bash
 git clone https://github.com/earthlylambsandcraft-cyber/Sauce-Demo.git
@@ -402,7 +436,7 @@ npx playwright install
 
 # Running Tests
 
-Run all tests:
+Run the complete test suite:
 
 ```bash
 npx playwright test
@@ -425,3 +459,28 @@ Open the HTML report:
 ```bash
 npx playwright show-report
 ```
+
+
+---
+
+# Future Improvements
+
+Planned enhancements for the framework include:
+
+- Environment configuration using `.env`
+- Multi-environment execution (QA, Staging, Production)
+- Advanced assertions and validation helpers
+- GitHub Actions CI/CD pipeline
+- Advanced HTML and Allure reporting
+- Cross-browser execution
+- Parallel test optimization
+- API testing with Playwright
+- Docker support
+
+---
+
+# Project Status
+
+This framework is actively being developed as part of a continuous learning journey in Playwright automation and software quality assurance.
+
+New features and architectural improvements will be added as the project evolves.
