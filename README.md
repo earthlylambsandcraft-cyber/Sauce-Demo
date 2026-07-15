@@ -313,6 +313,8 @@ Covered scenarios:
 - Badge count validation
 - Product sorting
 - Product data validation
+- UI assertions
+- Product data validation
 
 ---
 
@@ -329,6 +331,9 @@ Covered scenarios:
 - Product removal
 - Empty cart validation
 - Cart badge updates
+- Cart state validation
+- Price assertions
+- Quantity assertions
 
 ---
 
@@ -368,3 +373,55 @@ Each directory has a dedicated responsibility within the framework:
 - **Hooks** – Handles common setup and teardown actions.
 - **Data** – Stores reusable test data such as users, products, and sorting options.
 - **Utils** – Contains reusable helper classes used across the framework.
+
+
+
+---
+
+# Installation
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/earthlylambsandcraft-cyber/Sauce-Demo.git
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Install Playwright Browsers
+
+```bash
+npx playwright install
+```
+
+---
+
+# Running Tests
+
+Run all tests:
+
+```bash
+npx playwright test
+```
+
+Run tests in headed mode:
+
+```bash
+npx playwright test --headed
+```
+
+Run a specific test file:
+
+```bash
+npx playwright test Specs/cart.spec.js
+```
+
+Open the HTML report:
+
+```bash
+npx playwright show-report
+```
