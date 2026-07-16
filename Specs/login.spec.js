@@ -3,7 +3,7 @@ const { users } = require('../Data/users')
 
 
 
-test('Valid || should login successfully with valid credentials', async({ login }) => {
+test('@smoke @regression @login Valid - should login successfully with valid credentials', async({ login }) => {
 
     
 
@@ -18,7 +18,7 @@ test('Valid || should login successfully with valid credentials', async({ login 
 });
 
 
-test('Invalid User || should not login successfully with invalid username', async({ login }) => {
+test('@regression @login Invalid User - should not login successfully with invalid username', async({ login }) => {
 
     
 
@@ -31,7 +31,7 @@ test('Invalid User || should not login successfully with invalid username', asyn
 
 });
 
-test('Invalid Password || should not login successfully with invalid password', async({ login }) => {
+test('@regression @login Invalid Password - should not login successfully with invalid password', async({ login }) => {
 
     
 
@@ -45,7 +45,7 @@ test('Invalid Password || should not login successfully with invalid password', 
 
 });
 
-test('Invalid username & Password || should not login successfully with invalid username & password', async({ login }) => {
+test('@regression @login Invalid username & Password - should not login successfully with invalid username & password', async({ login }) => {
 
     await login.login(
         users.invalidUser.username,
@@ -56,7 +56,7 @@ test('Invalid username & Password || should not login successfully with invalid 
 
 });
 
-test('Empty User || should not login successfully with no username', async({ login }) => {
+test('@regression @login Empty User - should not login successfully with no username', async({ login }) => {
 
     
 
@@ -71,7 +71,7 @@ test('Empty User || should not login successfully with no username', async({ log
 
 });
 
-test('Empty Password || should not login successfully with no password', async({ login }) => {
+test('@regression @login Empty Password - should not login successfully with no password', async({ login }) => {
 
     
 
@@ -87,7 +87,7 @@ test('Empty Password || should not login successfully with no password', async({
 });
 
 
-test('Empty User & Password || should not login successfully with no username & password', async({ login }) => {
+test('@regression @login Empty User & Password - should not login successfully with no username & password', async({ login }) => {
 
     
 
@@ -104,7 +104,7 @@ test('Empty User & Password || should not login successfully with no username & 
 
 
 
-test('Locked User || should not login successfully with locked out credentials', async({ login }) => {
+test('@regression @login Locked User - should not login successfully with locked out credentials', async({ login }) => {
 
     
 
