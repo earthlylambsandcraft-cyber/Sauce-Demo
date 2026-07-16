@@ -5,6 +5,8 @@ module.exports = defineConfig({
 
     timeout: 40000,
 
+    retries: 2,
+
     reporter:'html',
 
     use: {
@@ -15,8 +17,13 @@ module.exports = defineConfig({
 
         baseURL: process.env.BASE_URL,
 
-
         headless: process.env.HEADLESS === 'true',
+
+        screenshot: 'only-on-failure',
+
+        video: 'retain-on-failure',
+
+        trace: 'on-first-retry'
 
     },
 
