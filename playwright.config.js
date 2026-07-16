@@ -15,10 +15,36 @@ module.exports = defineConfig({
 
         baseURL: process.env.BASE_URL,
 
-        browserName: process.env.BROWSER,
 
         headless: process.env.HEADLESS === 'true',
 
-    }
+    },
+
+    projects: [
+
+        {
+            name: 'chromium',
+
+            use: {
+                browserName: 'chromium'
+            }
+        },
+
+        {
+            name: 'firefox',
+
+            use: {
+                browserName: 'firefox'
+            }
+        },
+
+        {
+            name: 'webkit',
+
+            use: {
+                browserName: 'webkit'
+            }
+        },
+    ]
 
 });
