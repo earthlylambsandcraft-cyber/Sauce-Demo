@@ -12,12 +12,12 @@ module.exports = defineConfig({
     use: {
 
         launchOptions: {
-            slowMo: 1000
+            slowMo: 300
         },
 
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
 
-        headless: process.env.HEADLESS === 'true',
+        headless: process.env.CI ? true : process.env.HEADLESS === 'true',
 
         screenshot: 'only-on-failure',
 
