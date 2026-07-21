@@ -8,6 +8,12 @@ function registerHooks(test) {
 
         await page.waitForLoadState('networkidle');
 
+        console.log(await page.url());
+
+        console.log(await page.title());
+
+        console.log(await page.content().slice(0,500));
+
     });
 
     test.afterEach(async({page}, testInfo)=> {
