@@ -6,6 +6,8 @@ function registerHooks(test) {
 
         await page.goto('/');
 
+        await page.waitForLoadState('networkidle');
+
     });
 
     test.afterEach(async({page}, testInfo)=> {
