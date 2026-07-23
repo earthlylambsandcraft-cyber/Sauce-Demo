@@ -26,7 +26,7 @@ module.exports = defineConfig({
 
         video: 'retain-on-failure',
 
-        trace: 'on-first-retry'
+        trace: 'retain-on-failure'
 
     },
 
