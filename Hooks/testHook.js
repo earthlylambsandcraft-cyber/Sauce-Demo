@@ -1,4 +1,4 @@
-const { Screenshot } = require('../Utils/screenshot')
+const { expect } = require('@playwright/test');
 const { Screenshot } = require('../Utils/screenshot');
 
 function registerHooks(test) {
