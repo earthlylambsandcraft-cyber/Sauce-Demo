@@ -8,6 +8,8 @@ class Screenshot{
 
     async capture(name) {
 
+        const safeName = name.replace(/[<>:"/\\|?*]/g, "_");
+
         await this.page.screenshot({
             path:
             `test-results/${name}.png`

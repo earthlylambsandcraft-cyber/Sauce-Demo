@@ -5,14 +5,15 @@ function registerHooks(test) {
     test.beforeEach(async({page}) => {
 
         await page.goto('/');
-
         await page.waitForLoadState('networkidle');
 
-        console.log(await page.url());
+        console.log("URL:", await page.url());
 
-        console.log(await page.title());
+        console.log("TITLE:", await page.title());
 
-        console.log(await page.content().slice(0,500));
+        const html = await page.content();
+
+        console.log(html.slice(0, 500));
 
     });
 
