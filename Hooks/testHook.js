@@ -4,15 +4,14 @@ function registerHooks(test) {
 
     test.beforeEach(async ({ page }) => {
     
-        await page.goto("/");
+        await page.goto('/');
 
-        await page
-            .getByPlaceholder("Username")
-            .waitFor({
-                state: "visible",
-                timeout: 30000,
+        await page.waitForLoadState('domcontentloaded');
+
+        await expect(
+        page.getByPlaceholder('Username')
+        ).toBeVisible({ timeout: 30000 });
             });
-    });
 
     test.afterEach(async({page}, testInfo)=> {
 
