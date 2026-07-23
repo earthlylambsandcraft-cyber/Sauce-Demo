@@ -15,9 +15,7 @@ async verifyPage() {
         .getByPlaceholder('Password')
 
     const loginBtn = this.page
-        .getByRole('button',{
-            name:'Login'
-        })
+        .locator('#login-button')
 
     await expect(userNameInput).toBeVisible();
     await expect(passwordInput).toBeVisible();
@@ -45,9 +43,7 @@ async fillPassword(password) {
 async clickLogin(){
 
     await this.page
-        .getByRole('button',{
-            name:'Login'
-        })
+        .locator('#login-button')
         .click();
 
 }
