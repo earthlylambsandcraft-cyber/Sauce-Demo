@@ -1,4 +1,5 @@
 const { Screenshot } = require('../Utils/screenshot')
+const { Screenshot } = require('../Utils/screenshot');
 
 function registerHooks(test) {
 
