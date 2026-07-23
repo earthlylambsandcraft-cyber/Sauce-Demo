@@ -2,13 +2,16 @@ const { Screenshot } = require('../Utils/screenshot')
 
 function registerHooks(test) {
 
-    test.beforeEach(async({page}) => {
+    test.beforeEach(async ({ page }) => {
+    
+        await page.goto("/");
 
-        await page.goto('/');
-
-        await page.waitForLoadState('networkidle');
-
-
+        await page
+            .getByPlaceholder("Username")
+            .waitFor({
+                state: "visible",
+                timeout: 30000,
+            });
     });
 
     test.afterEach(async({page}, testInfo)=> {
