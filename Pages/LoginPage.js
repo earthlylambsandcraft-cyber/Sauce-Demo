@@ -25,7 +25,18 @@ async verifyPage() {
 }
     
 async fillUserName(username) {
-    const usernameInput = this.page.getByPlaceholder('Username');
+    console.log("========== LOGIN ==========");
+    console.log("URL:", this.page.url());
+    console.log("Title:", await this.page.title());
+
+    const usernameInput = this.page.getByPlaceholder("Username");
+
+    console.log("Count:", await usernameInput.count());
+
+    console.log(
+        "Body:",
+        await this.page.locator("body").textContent()
+    );
 
     await expect(usernameInput).toBeVisible();
 
