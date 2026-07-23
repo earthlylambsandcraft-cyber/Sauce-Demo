@@ -39,6 +39,7 @@ async fillUserName(username) {
         await this.page.locator("body").textContent()
     );
 
+    
     await usernameInput.click();
     await usernameInput.pressSequentially(username);
 }
