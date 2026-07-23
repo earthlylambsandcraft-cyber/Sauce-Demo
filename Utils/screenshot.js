@@ -8,7 +8,10 @@ class Screenshot{
 
     async capture(name) {
 
-        const safeName = name.replace(/[<>:"/\\|?*]/g, "_");
+        const safeName = name
+            .replace(/[<>:"/\\|?*]/g, "_")
+            .replace(/\s+/g, "_");
+
 
         await this.page.screenshot({
             path:
