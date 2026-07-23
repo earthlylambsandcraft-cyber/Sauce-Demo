@@ -12,7 +12,7 @@ module.exports = defineConfig({
     use: {
 
         launchOptions: {
-            slowMo: 300
+            slowMo: process.env.CI ? 0 : 300
         },
 
         baseURL: process.env.BASE_URL || 'https://www.saucedemo.com',
