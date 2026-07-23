@@ -5,6 +5,24 @@ function registerHooks(test) {
     test.beforeEach(async({page}) => {
 
         await page.goto('/');
+
+        const username = page.getByPlaceholder('Username');
+
+        console.log(
+            "Username count:",
+            await username.count()
+        );
+
+        console.log(
+            "Visible:",
+            await username.isVisible().catch(() => false)
+        );
+
+        console.log(
+            "Enabled:",
+            await username.isEnabled().catch(() => false)
+        );
+
         await page.waitForLoadState('networkidle');
 
         console.log("URL:", await page.url());
