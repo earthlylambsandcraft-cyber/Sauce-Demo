@@ -25,23 +25,11 @@ async verifyPage() {
 }
     
 async fillUserName(username) {
+    const usernameInput = this.page.getByPlaceholder('Username');
 
-    console.log("========== BEFORE FILL ==========");
-    console.log("URL:", this.page.url());
-    console.log("Title:", await this.page.title());
+    await expect(usernameInput).toBeVisible();
 
-    const usernameInput = this.page.getByPlaceholder("Username");
-
-    console.log("Count:", await usernameInput.count());
-
-    console.log(
-        "Body snippet:",
-        await this.page.locator("body").textContent()
-    );
-
-    
-    await usernameInput.click();
-    await usernameInput.pressSequentially(username);
+    await usernameInput.fill(username);
 }
 
 async fillPassword(password) {

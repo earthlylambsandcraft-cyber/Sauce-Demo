@@ -16,4 +16,5 @@ test('Debug SauceDemo Login', async ({ page }) => {
     await username.fill('standard_user');
 
     await expect(username).toHaveValue('standard_user');
+    
 });
