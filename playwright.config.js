@@ -3,7 +3,7 @@ require('dotenv').config();
 
 module.exports = defineConfig({
 
-    timeout: 70000,
+    timeout: 40000,
 
     // playwright.config.js
     workers: 1,
