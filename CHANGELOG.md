@@ -44,6 +44,7 @@ Result:
 Notes:
 - Some tests may be marked flaky due to external application loading delays, mainly during login page initialization.
 - Current focus is improving test stability and reducing flaky retries.
+- Known issue: WebKit occasionally exhibits timing-related flakiness when all browser projects run concurrently. Investigation deferred while continuing the learning roadmap.
 
 Next:
 - Assertions cleanup

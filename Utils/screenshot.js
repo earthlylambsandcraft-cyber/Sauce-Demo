@@ -15,7 +15,7 @@ class Screenshot{
 
         await this.page.screenshot({
             path:
-            `test-results/${name}.png`
+            `test-results/${safeName}.png`
 
         });
 

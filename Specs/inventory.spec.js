@@ -49,7 +49,8 @@ test('Product count', async ({login, inventory}) => {
     const count =
     await inventory.getProductCount();
 
-    console.log(count);
+
+    expect(count).toBe(6);
 
 })
 
@@ -60,11 +61,23 @@ test('Product names', async ({login, inventory}) => {
         users.standardUser.password
     );
 
-    console.log(
-    await inventory.getProductNames()
-    );
+    const productNames = 
+    await inventory.getProductNames();
 
-})
+
+
+    expect(productNames).toEqual([
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Onesie",
+        "Test.allTheThings() T-Shirt (Red)"
+    
+    ]);
+    
+    
+});
 
 test('Product descriptions', async ({login, inventory}) => {
     
