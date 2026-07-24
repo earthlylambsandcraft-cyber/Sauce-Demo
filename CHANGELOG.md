@@ -1,5 +1,46 @@
 # Changelog
 
+## 2026-07-24
+
+### Added
+- Inventory product name validation using `toEqual()`
+- Inventory product description validation using `toEqual()`
+- Inventory product summary validation using shared test data
+- Badge count assertions for add-to-cart scenarios
+- Inventory product count validation
+- Individual product price assertions using parameterized test data
+- Shared product descriptions in `Data/items.js` for reusable inventory validation
+
+### Updated
+- Replaced inventory `console.log()` debugging with Playwright assertions
+- Improved inventory test coverage and validation reliability
+- Refined inventory specification readability
+- Enhanced shared product test data for object-based comparisons
+
+### Refactored
+- Login page interactions and locator handling
+- Inventory assertions to use reusable data fixtures
+- Product summary validation to compare against centralized test data
+
+### Result
+- ✅ Inventory tests now validate application behavior instead of printing values
+- ✅ Reduced manual debugging through assertion-based verification
+- ✅ Improved maintainability by centralizing expected product data
+- ✅ Cleaner and more reliable Playwright test suite
+
+### Notes
+- `getBadgeCount()` currently returns an array by design for compatibility with existing specs. Refactoring has been deferred to avoid unnecessary changes across the framework.
+- Sorting validation remains pending and will be implemented with dedicated assertion logic rather than static comparisons.
+
+### Next
+- Locator assertions (`toHaveText`, `toBeVisible`, `toHaveValue`, `toHaveCount`)
+- Sorting validation (A→Z, Z→A, Low→High, High→Low)
+- Advanced Playwright assertions
+- Framework cleanup and README improvements
+- API testing fundamentals
+
+---
+
 ## 2026-07-15
 
 Added:
