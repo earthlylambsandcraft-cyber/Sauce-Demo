@@ -20,9 +20,11 @@ for (const product of products) {
         product.name
     );
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    
+    const cart = await inventory.getBadgeCount();
+
+    expect(cart).toEqual(["1"]);
+    
 
 });
 
@@ -86,9 +88,16 @@ test('Product descriptions', async ({login, inventory}) => {
         users.standardUser.password
     );
 
-    console.log(
-    await inventory.getProductDescriptions()
-    );
+    const descriptions = await inventory.getProductDescriptions();
+
+    expect(descriptions).toEqual([
+        'carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.',
+        "A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included.",
+        'Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt.',
+        "It's not every day that you come across a midweight quarter-zip fleece jacket capable of handling everything from a relaxing day outdoors to a busy day at the office.",
+        "Rib snap infant onesie for the junior automation engineer in development. Reinforced 3-snap bottom closure, two-needle hemmed sleeved and bottom won't unravel.",
+        'This classic Sauce Labs t-shirt is perfect to wear when cozying up to your keyboard to automate a few tests. Super-soft and comfy ringspun combed cotton.'
+        ]);
 
 })
 
@@ -123,9 +132,9 @@ test('Product summary', async ({login, inventory}) => {
         users.standardUser.password
     );
 
-    console.log(
-    await inventory.getProductSummary()
-    );
+    const summary = await inventory.getProductSummary();
+
+    expect(summary).toEqual(products);
 
 })
 
@@ -140,9 +149,9 @@ test('Add one product', async ({login, inventory}) => {
     productNames.backpack
     );
 
-    console.log(
-    await inventory.getBadgeCount()
-    );
+    const cart = await inventory.getBadgeCount();
+
+    expect(cart).toEqual(["1"]);
 
 })
 
@@ -167,9 +176,9 @@ test('Add multiple products', async ({login, inventory}) => {
         productNames.boltShirt
     );
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    const cart = await inventory.getBadgeCount();
+
+    expect(cart).toEqual(["3"]);
 })
 
 test('Remove one product', async ({login, inventory}) => {
