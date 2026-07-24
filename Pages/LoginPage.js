@@ -15,7 +15,7 @@ async verifyPage() {
         .getByPlaceholder('Password')
 
     const loginBtn = this.page
-        .locator('#login-button')
+        .locator('[id="login-button"]')
 
     await expect(userNameInput).toBeVisible();
     await expect(passwordInput).toBeVisible();
