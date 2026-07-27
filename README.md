@@ -2,13 +2,15 @@
 ![Playwright](https://img.shields.io/badge/Playwright-Automation-green)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
 ![Node.js](https://img.shields.io/badge/Node.js-20+-green)
-![Status](https://img.shields.io/badge/Status-Active-blue)
+![Status](https://img.shields.io/badge/Status-v1.0.0-success)
 
 ## Overview
 
-This project is an end-to-end UI automation framework built using Playwright and JavaScript.
+This project is an end-to-end UI automation framework built with Playwright and JavaScript following industry-standard automation practices.
 
-Application Under Test:
+The framework demonstrates reusable test architecture using the Page Object Model (POM), custom fixtures, shared test data, parameterized testing, and Playwright locator assertions while automating the Sauce Demo e-commerce application.
+
+## Application Under Test
 
 https://www.saucedemo.com/
 
@@ -22,11 +24,24 @@ The framework automates the Sauce Demo e-commerce application and validates crit
 - Checkout workflow
 - Order completion
 
-The framework was designed using industry-standard automation practices to improve maintainability, scalability, and test reusability.
+
+# Features
+
+- Page Object Model (POM)
+- Custom Playwright Fixtures
+- Data-Driven Testing
+- Parameterized Tests
+- Reusable Test Data
+- Locator Assertions
+- Cross-browser Execution
+- HTML Reports
+- GitHub Actions CI
+- Environment Configuration (.env)
 
 # Table of Contents
 
 - Overview
+- Features
 - Tech Stack
 - Framework Architecture
 - Framework Design
@@ -37,6 +52,12 @@ The framework was designed using industry-standard automation practices to impro
 - Test Coverage
 - Installation
 - Running Tests
+- Reports
+- Learning Highlights
+- Future Improvements
+- Project Status
+- Changelog
+
 
 ---
 
@@ -52,6 +73,7 @@ The framework was designed using industry-standard automation practices to impro
 | GitHub | Source repository |
 
 ---
+
 
 # Framework Architecture
 
@@ -108,6 +130,8 @@ Each directory has a dedicated responsibility within the framework:
 ## Page Object Model (POM)
 
 The framework uses the Page Object Model design pattern.
+
+Each Page Object centralizes reusable locators and page actions, keeping selectors out of test files and making maintenance easier as the application evolves.
 
 Each application page has its own class containing:
 
@@ -344,8 +368,11 @@ Covered scenarios:
 - Product addition
 - Product removal
 - Badge count validation
-- Product sorting
-- Product data validation
+- Product sorting (A–Z, Z–A, Low–High, High–Low)
+- Product name validation
+- Product description validation
+- Product price validation
+- Product summary validation
 - UI assertions
 
 
@@ -440,6 +467,15 @@ Run the complete test suite:
 
 ```bash
 npx playwright test
+
+# Run tests in Chromium only
+npx playwright test --project=chromium
+
+# Run a single test by name
+npx playwright test -g "Product count"
+
+# Run with UI Mode
+npx playwright test --ui
 ```
 
 Run tests in headed mode:
@@ -460,27 +496,58 @@ Open the HTML report:
 npx playwright show-report
 ```
 
+---
+
+# Reports
+
+The framework generates Playwright HTML reports after test execution.
+
+Reports include:
+
+- Test status
+- Execution time
+- Failure screenshots
+- Stack traces
+- Browser information
 
 ---
 
+# Learning Highlights
+
+Through this project I gained hands-on experience with:
+
+- JavaScript fundamentals for test automation
+- Playwright locators and locator assertions
+- Page Object Model (POM)
+- Custom fixtures
+- Data-driven testing
+- Parameterized testing
+- Cross-browser testing
+- GitHub Actions CI
+- HTML reporting
+- Framework organization and maintainability
+
 # Future Improvements
 
-Planned enhancements for the framework include:
-
-- Environment configuration using `.env`
-- Multi-environment execution (QA, Staging, Production)
-- Advanced assertions and validation helpers
-- GitHub Actions CI/CD pipeline
-- Advanced HTML and Allure reporting
-- Cross-browser execution
-- Parallel test optimization
+- API response validation
 - API testing with Playwright
+- Network interception and request mocking
+- Authentication state reuse
+- Visual regression testing
+- Allure reporting
 - Docker support
+- Performance metrics
 
 ---
 
 # Project Status
 
-This framework is actively being developed as part of a continuous learning journey in Playwright automation and software quality assurance.
+✅ Version 1.0 Complete
 
-New features and architectural improvements will be added as the project evolves.
+This project represents Version 1.0 of my Playwright automation framework. It demonstrates core automation concepts including the Page Object Model (POM), custom fixtures, data-driven testing, reusable test architecture, and end-to-end UI automation.
+
+Future updates will focus on advanced Playwright topics such as API testing, network interception, and additional reporting capabilities.
+
+# Changelog
+
+Project updates and version history are documented in [CHANGELOG.md](CHANGELOG.md).
