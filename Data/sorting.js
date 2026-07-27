@@ -4,9 +4,9 @@ const sortingOptions = [
 
     "Name (Z to A)",
 
-    "Price (low to high)",
+    //"Price (low to high)",
 
-    "Price (high to low)"
+    //"Price (high to low)"
 
 ];
 
