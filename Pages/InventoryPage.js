@@ -1,9 +1,33 @@
 const { expect } = require("@playwright/test");
 
 class InventoryPage {
+
     constructor(page) {
-        this.page = page
+
+        this.page = page;
+
+        // Page
+
+        this.inventoryTitle = page.getByText("Products");
+
+        // Navigation
+
+        this.cartButton = page.locator(".shopping_cart_link");
+
+        // Collections
+
+        this.inventoryItems = page.locator(".inventory_item");
+        this.productNames = page.locator(".inventory_item_name");
+        this.productDescriptions = page.locator(".inventory_item_desc");
+        this.productPrices = page.locator(".inventory_item_price");
+
+        // UI
+
+        this.cartBadge = page.locator(".shopping_cart_badge");
+
+        this.sortDropdown = page.locator(".product_sort_container");
     }
+
 
 
 
@@ -11,26 +35,24 @@ async verifyInventoryPage() {
     
         await expect(this.page).toHaveURL(/inventory.html/);
 
-        const inventoryTitle = this.page.getByText('Products');
-    
-        await expect(inventoryTitle).toBeVisible();
-    
+        await expect(this.inventoryTitle)
+            .toBeVisible();
+
+        await expect(this.inventoryTitle)
+            .toHaveText("Products");
     }    
 
 async openCart() {
 
-    const goToCart =  this.page.locator('.shopping_cart_link')
-
-    await goToCart.click();
-
+    await this.cartButton.click();
 
 }
 
 async sortBy(options) {
 
-    await this.page
-    .locator('.product_sort_container')
-    .selectOption({ label : options });
+    await this.sortDropdown.selectOption({
+        label: options
+    });
 
 
 }
@@ -67,7 +89,7 @@ async removeProduct(productName) {
 
 async getBadgeCount() {
     
-    const itemQty = this.page.locator('.shopping_cart_badge');
+    const itemQty = this.cartBadge;
     
     const badgeSorting = await itemQty.count();
 
@@ -88,20 +110,11 @@ async getBadgeCount() {
     }
 
 
-async getProductCount() {
-
-    return await this.page
-    .locator('.inventory_item')
-    .count();
-    
-}
-
-
 async getProductNames() {
         
         const names = [];
 
-        const itemShelved = this.page.locator('.inventory_item_name');
+        const itemShelved = this.productNames;
 
         const itemslooped = await itemShelved.count();
 
@@ -121,7 +134,7 @@ async getProductDescriptions() {
 
         const descriptions = [];
 
-        const itemShelved = this.page.locator('.inventory_item_desc');
+        const itemShelved = this.productDescriptions;
 
         const itemslooped = await itemShelved.count();
 
@@ -158,7 +171,7 @@ async getProductPrices() {
 
     const prices = [];
 
-        const itemShelved = this.page.locator('.inventory_item_price');
+        const itemShelved = this.productPrices;
 
         const itemslooped = await itemShelved.count();
 
@@ -178,7 +191,7 @@ async getProductPrices() {
 
 async getProductSummary() {
 
-    const productList = await this.page.locator('.inventory_item').evaluateAll(items =>
+    const productList = await this.inventoryItems.evaluateAll(items =>
         items.map(item => ({
 
             name : item.querySelector('.inventory_item_name')?.textContent.trim(),
