@@ -1,7 +1,7 @@
 const { test, expect } = require("../Fixtures/pageFixtures");
 const { productNames, products } = require("../Data/items");
 const { users } =require("../Data/users");
-const { sortingOptions } = require("../Data/sorting");
+
 
 
 for (const product of products) {
@@ -48,11 +48,10 @@ test('Product count', async ({login, inventory}) => {
         users.standardUser.password
     );
 
-    const count =
-    await inventory.getProductCount();
+    await expect(
+        inventory.inventoryItems
+    ).toHaveCount(6);
 
-
-    expect(count).toBe(6);
 
 })
 
@@ -151,6 +150,10 @@ test('Add one product', async ({login, inventory}) => {
 
     const cart = await inventory.getBadgeCount();
 
+    await expect(
+        inventory.cartBadge
+    ).toBeVisible();
+
     expect(cart).toEqual(["1"]);
 
 })
@@ -196,9 +199,9 @@ test('Remove one product', async ({login, inventory}) => {
         productNames.backpack
     );
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    const cart = await inventory.getBadgeCount();
+
+    expect(cart).toEqual([]);
 
 })
 
@@ -224,29 +227,110 @@ test('Badge Count', async ({login, inventory}) => {
 
     await inventory.addProduct(productNames.backpack);
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    const cart =
+        await inventory.getBadgeCount();
+
+    expect(cart).toEqual(["1"]);
 })
 
 
-for(const options of sortingOptions) {
 
 
-    test(`Sort ${options}`, async ({login, inventory}) => {
+    test("Sort A-Z", async ({login, inventory}) => {
     
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
+        await login.login(
+            users.standardUser.username,
+            users.standardUser.password
+        );
 
-    await inventory.sortBy(options);
+        await inventory.sortBy("Name (A to Z)");
 
-    console.log(
-        await inventory.getProductSummary()
-    );
+        
+        const summary = await inventory.getProductSummary()
+        
 
-});
+        const names = summary.map(product => product.name);
 
-}
+
+        const expected = [...names]
+            .sort()
+
+        expect(names).toEqual(expected);
+
+    });
+
+
+
+    test("Sort Z-A", async ({login, inventory}) => {
+    
+        await login.login(
+            users.standardUser.username,
+            users.standardUser.password
+        );
+
+        await inventory.sortBy("Name (Z to A)");;
+
+        
+        const summary = await inventory.getProductSummary()
+        
+
+        const names = summary.map(product => product.name);
+
+        const expected = [...names]
+            .sort()
+            .reverse();
+
+        expect(names).toEqual(expected);
+
+    });
+
+    test(`Price (low to high)`, async ({login, inventory}) => {
+    
+        await login.login(
+            users.standardUser.username,
+            users.standardUser.password
+        );
+
+        await inventory.sortBy("Price (low to high)");
+
+        
+        const summary = await inventory.getProductSummary()
+        
+
+        const prices = summary.map(product=>
+            parseFloat(product.price.replace("$",""))
+        );
+
+        const expected = [...prices].sort((a,b) => a - b);
+
+        expect(prices).toEqual(expected);
+
+    });
+
+
+
+    test(`Price (high to low)`, async ({login, inventory}) => {
+    
+        await login.login(
+            users.standardUser.username,
+            users.standardUser.password
+        );
+
+        await inventory.sortBy("Price (high to low)");
+
+        
+        const summary = await inventory.getProductSummary()
+        
+
+        const prices = summary.map(product =>
+             parseFloat(product.price.replace("$",""))
+            );
+
+
+        const expected = [...prices].sort((a,b) => b - a)
+
+        expect(prices).toEqual(expected);
+
+    });
+
 
