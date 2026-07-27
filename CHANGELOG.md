@@ -1,5 +1,37 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2026-07-27
+
+### Added
+- Initial Playwright test framework
+- Page Object Model (POM)
+- Custom fixtures
+- Shared test data
+- Inventory page tests
+- Product validation tests
+- Sorting validation (A–Z, Z–A, Low–High, High–Low)
+- HTML reporting
+- GitHub Actions workflow
+- Multi-browser support
+- Environment variable configuration (.env)
+
+### Improved
+- Refactored Page Objects to use constructor-based locators
+- Reduced duplicated selectors
+- Replaced debug `console.log()` statements with assertions
+- Improved readability and maintainability of tests
+- Organized reusable methods and locators
+
+### Tested
+- Inventory page loads successfully
+- Product names, descriptions, and prices
+- Product summary validation
+- Add/remove cart functionality
+- Shopping cart badge updates
+- Product sorting functionality
+
 ## 2026-07-24
 
 ### Added
