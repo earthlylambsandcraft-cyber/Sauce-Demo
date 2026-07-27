@@ -15,11 +15,23 @@ async verifyPage() {
         .getByPlaceholder('Password')
 
     const loginBtn = this.page
-        .locator('[id="login-button"]')
+        .locator('#login-button')
 
     await expect(userNameInput).toBeVisible();
     await expect(passwordInput).toBeVisible();
     await expect(loginBtn).toBeVisible();
+
+    await expect(userNameInput).
+        toHaveAttribute("placeholder", 'Username')
+    
+    await expect(passwordInput).
+        toHaveAttribute("placeholder", 'Password')
+
+    await expect(loginBtn)
+        .toHaveText('Login')
+    
+    await expect(loginBtn)
+        .toBeEnabled();
 
     
 }
@@ -37,9 +49,12 @@ async fillUserName(username) {
 
 async fillPassword(password) {
 
-    await this.page
-        .getByPlaceholder('Password')
-        .fill(password);
+    const passwordInput = this.page
+        .getByPlaceholder('Password');
+    
+    await expect(passwordInput).toBeVisible();
+    
+    await passwordInput.fill(password);
 }
 
 
