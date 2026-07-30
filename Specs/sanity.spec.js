@@ -84,9 +84,14 @@ test('Sanity || Complete purchase flow', async({
 
     await overview.finishOrder();
 
-    console.log(
-    await overview.verifyConfirmation()
-);
+    const confirmation =
+    await overview.getConfirmation();
+
+    expect(confirmation).toEqual({
+        greetingMessage: "Thank you for your order!",
+        greetingContent:
+            "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+    });
 
 })
 
