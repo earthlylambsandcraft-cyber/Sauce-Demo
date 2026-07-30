@@ -2,35 +2,43 @@ const { expect } = require("@playwright/test");
 
 class sauceAccount {
     constructor(page) {
+        
         this.page = page
+
+    this.userNameInput = page
+        .getByPlaceholder('Username')
+
+    this.passwordInput = page
+        .getByPlaceholder('Password')
+
+    this.loginButton = page
+        .locator('#login-button');
+
+    this.errorMessage = page
+        .locator('.error-message-container')
+
     }
+
+    
 
     
 async verifyPage() {
 
-    const userNameInput = this.page
-        .getByPlaceholder('Username')
 
-    const passwordInput = this.page
-        .getByPlaceholder('Password')
+    await expect(this.userNameInput).toBeVisible();
+    await expect(this.passwordInput).toBeVisible();
+    await expect(this.loginButton).toBeVisible();
 
-    const loginBtn = this.page
-        .locator('#login-button')
-
-    await expect(userNameInput).toBeVisible();
-    await expect(passwordInput).toBeVisible();
-    await expect(loginBtn).toBeVisible();
-
-    await expect(userNameInput).
+    await expect(this.userNameInput).
         toHaveAttribute("placeholder", 'Username')
     
-    await expect(passwordInput).
+    await expect(this.passwordInput).
         toHaveAttribute("placeholder", 'Password')
 
-    await expect(loginBtn)
+    await expect(this.loginButton)
         .toHaveText('Login')
     
-    await expect(loginBtn)
+    await expect(this.loginButton)
         .toBeEnabled();
 
     
@@ -38,31 +46,23 @@ async verifyPage() {
     
 async fillUserName(username) {
     
+    await expect(this.userNameInput).toBeVisible();
 
-    const usernameInput = this.page.getByPlaceholder("Username");
-
-
-    await expect(usernameInput).toBeVisible();
-
-    await usernameInput.fill(username);
+    await this.userNameInput.fill(username);
 }
 
 async fillPassword(password) {
-
-    const passwordInput = this.page
-        .getByPlaceholder('Password');
     
-    await expect(passwordInput).toBeVisible();
+    await expect(this.passwordInput).toBeVisible();
     
-    await passwordInput.fill(password);
+    await this.passwordInput.fill(password);
 }
 
 
 async clickLogin(){
 
-    await this.page
-        .locator('#login-button')
-        .click();
+    
+    await this.loginButton.click();
 
 }
 
@@ -75,13 +75,16 @@ async login(username, password) {
 }
 
 
-async getErrorMessage() {
+async getErrorMessage(expectedMessage) {
 
-    const errorMessage = this.page
-    .locator('.error-message-container')
 
-    await expect(errorMessage).toBeVisible();
-
+    await expect(this.errorMessage)
+        .toBeVisible();
+    
+    
+    await expect(this.errorMessage)
+        .toHaveText(expectedMessage);
+    
 }
 
 }
