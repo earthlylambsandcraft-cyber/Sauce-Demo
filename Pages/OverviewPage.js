@@ -121,21 +121,11 @@ async finishOrder() {
 }
 
 
-async verifyConfirmation() {
-    
-
-        const verifiedConfirmation = await this.page.locator(".checkout_complete_container").evaluateAll( confirmations =>
-            confirmations.map(confirmation => ({
-                
-                GreetingMessage : confirmation.querySelector('.complete-header')?.textContent.trim(),
-                GreetingContent : confirmation.querySelector('.complete-text')?.textContent.trim(),
-
-            }))
-        );
-
-        return verifiedConfirmation;
-
-    
+async getConfirmation() {
+    return await this.page.locator(".checkout_complete_container").evaluate(container => ({
+        greetingMessage: container.querySelector(".complete-header")?.textContent.trim(),
+        greetingContent: container.querySelector(".complete-text")?.textContent.trim()
+    }));
 }
 
 
