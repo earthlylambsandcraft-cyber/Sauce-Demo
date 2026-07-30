@@ -1,5 +1,5 @@
 const { test, expect } = require('../Fixtures/pageFixtures');
-const { productNames } = require('../Data/items');
+const { productNames, products } = require('../Data/items');
 const { users } = require('../Data/users')
 
 
@@ -260,9 +260,14 @@ test('Finish Order', async({
 
     await overview.finishOrder();
 
-    console.log(
-        await overview.verifyConfirmation()
-    );
+    const confirmation =
+        await overview.getConfirmation();
+
+    expect(confirmation).toEqual({
+        greetingMessage: "Thank you for your order!",
+        greetingContent:
+            "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+    });
     
 })
 
@@ -289,8 +294,8 @@ test('Badge Count', async({
 
     await checkout.continueCheckout();
 
-    console.log(
-        await overview.getBadgeCount()
-    );
+    const badgeCount = await overview.getBadgeCount();
+
+    expect(badgeCount).toEqual(["1"])
     
 })
