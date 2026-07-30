@@ -8,7 +8,7 @@ class InventoryPage {
 
         // Page
 
-        this.inventoryTitle = page.getByText("Products");
+        this.inventoryTitle = page.locator(".title");
 
         // Navigation
 
@@ -36,7 +36,10 @@ async verifyInventoryPage() {
         await expect(this.page).toHaveURL(/inventory.html/);
 
         await expect(this.inventoryTitle)
-            .toBeVisible();
+            .toBeVisible()
+            
+        await expect(this.inventoryTitle)
+            .toContainText("Products")
 
         await expect(this.inventoryTitle)
             .toHaveText("Products");
