@@ -1,5 +1,5 @@
 const { test, expect } = require('../Fixtures/pageFixtures');
-const { productNames } = require("../Data/items");
+const { productNames, products } = require("../Data/items");
 const { users } = require("../Data/users")
 
 
@@ -17,7 +17,11 @@ test('Cart should open upon clicking', async({login, cart}) => {
     await cart.open();
 
 
-    await cart.verifyCartPage();
+    await cart.verifyCartPage(
+        'Your Cart',
+        'QTY',
+        'Description'
+    );
 
 });
 
@@ -36,9 +40,12 @@ test('Cart should display products', async({login, inventory, cart}) => {
 
     await inventory.openCart();
 
-    console.log(
-        await cart.getItems()
-    );
+    const actual = await cart.getItemNames();
+    const expected = products
+        .slice(0, 3)
+        .map(product => product.name);
+
+    expect(actual).toEqual(expected);
 
 });
 
@@ -55,9 +62,10 @@ test('Cart should display prices', async({login, inventory, cart}) => {
 
     await inventory.openCart();
 
-    console.log(
-        await cart.getPrices()
-    );
+    const actualPrices =  await cart.getItemPrices();
+    const expectedPrices = products.map(product => product.price); 
+    
+    expect(actualPrices).toEqual(expectedPrices)
 
 });
 
@@ -75,9 +83,12 @@ test('Cart should display quantities', async({login, inventory, cart}) => {
 
     await inventory.openCart();
 
-    console.log(
-        await cart.getQuantities()
-    );
+    
+    const itemQuantity = 
+        await cart.getItemQuantities()
+
+    expect(itemQuantity).toEqual(["1", "1", "1"]);
+    
 
 });
 
@@ -131,9 +142,9 @@ test('Remove one item', async({login, inventory, cart}) => {
         productNames.backpack
     );
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    const badgeCount = await inventory.getBadgeCount();
+
+    expect(badgeCount).toEqual([])
 
     
 
@@ -170,9 +181,11 @@ test('Remove all items', async({login, inventory, cart}) => {
         productNames.fleeceJacket
     );
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    
+    const badgeCount = await inventory.getBadgeCount();
+
+    expect(badgeCount).toEqual([])
+    
 
 });
 
@@ -202,9 +215,9 @@ test('Badge Updates', async({login, inventory, cart}) => {
     await inventory.addProduct(productNames.backpack);
     await inventory.addProduct(productNames.bikeLight);
 
-    console.log(
-        await inventory.getBadgeCount()
-    );
+    const badgeCount = await inventory.getBadgeCount();
+
+    expect(badgeCount).toEqual(["2"])
 
 
 });
