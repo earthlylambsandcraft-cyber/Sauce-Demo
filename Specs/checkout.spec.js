@@ -46,79 +46,13 @@ test('Should sort badge count', async({
 
     await cart.checkout();
 
-    const badge = 
+    const badgeCount = 
     await checkout.getBadgeCount();
 
-    console.log(badge);
+    expect(badgeCount).toEqual(["1"]);
 
 });
 
-
-test('Should fill first name', async({
-    login,
-    inventory,
-    cart,
-    checkout
-}) => {
-
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
-
-    await inventory.addProduct(productNames.backpack);
-
-    await inventory.openCart();
-
-    await cart.checkout();
-
-    await checkout.fillFirstName();
-
-});
-
-test('Should fill last name', async({
-    login,
-    inventory,
-    cart,
-    checkout
-}) => {
-
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
-
-    await inventory.addProduct(productNames.backpack);
-
-    await inventory.openCart();
-
-    await cart.checkout();
-
-    await checkout.fillLastName();
-
-});
-
-test('Should fill zip code', async({
-    login,
-    inventory,
-    cart,
-    checkout
-}) => {
-
-    await login.login(
-        users.standardUser.username,
-        users.standardUser.password
-    );
-
-    await inventory.addProduct(productNames.backpack);
-
-    await inventory.openCart();
-
-    await cart.checkout();
-
-    await checkout.fillZipCode();
-
-});
 
 test('Should fill customer information', async({
     login,
