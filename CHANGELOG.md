@@ -2,6 +2,78 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-07-30
+
+### Added
+- Complete Cart page test coverage
+- Complete Checkout page test coverage
+- Complete Overview page test coverage
+- End-to-end purchase sanity test
+- Order confirmation validation
+- Cart summary validation
+- Checkout customer information workflow
+- Overview payment, shipping, subtotal, tax, and total retrieval methods
+- Centralized product validation using shared test data
+
+### Improved
+- Refactored confirmation validation to return structured objects through `getConfirmation()`
+- Improved test readability by replacing hardcoded inventory expectations with shared product data
+- Standardized Page Object methods across Inventory, Cart, Checkout, and Overview pages
+- Improved framework consistency through reusable helper methods and centralized assertions
+- Enhanced overall maintainability by reducing duplicated validation logic
+
+### Fixed
+- Corrected cart product validation to use shared product dataset
+- Fixed cart quantity expectations for multiple products
+- Fixed badge count expectations after removing all cart items
+- Fixed order confirmation validation after Page Object refactoring
+- Corrected missing `products` import in cart specification
+- Removed outdated references to deprecated confirmation methods
+
+### Tested
+- Complete login workflow
+- Inventory validation
+- Product sorting (A–Z, Z–A, Low–High, High–Low)
+- Cart functionality
+- Checkout workflow
+- Overview page validation
+- Complete purchase flow
+- Multi-browser execution (Chromium, Firefox, WebKit)
+
+### Result
+- ✅ Framework architecture finalized for Version 1.1
+- ✅ Full end-to-end purchase workflow covered
+- ✅ Consistent Page Object Model implementation across the framework
+- ✅ Shared test data used throughout the test suite
+- ✅ Framework ready for README publication and GitHub release
+
+### Known Limitations
+- Several Overview tests still use `console.log()` for exploratory validation and will be converted into assertion-based tests in a future update.
+- `getBadgeCount()` remains duplicated across multiple Page Objects and is intentionally deferred for a future framework refactor.
+
+### Next
+- Replace remaining exploratory logging tests with assertions
+- Introduce API testing with Playwright
+- Expand negative checkout scenarios
+- Improve reporting and framework utilities
+- Continue roadmap toward advanced Playwright features
+
+## [1.0.0] - 2026-07-29
+
+Known Issue
+
+Firefox occasionally exhibits intermittent rendering freezes
+during repeated execution against SauceDemo.
+
+Observed:
+
+- 38/40 passes
+- Chromium unaffected
+- WebKit unaffected
+
+Status:
+Under investigation.
+
 ## [1.0.0] - 2026-07-27
 
 ### Added
