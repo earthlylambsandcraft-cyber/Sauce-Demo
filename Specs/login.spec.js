@@ -27,7 +27,9 @@ test('@regression @login Invalid User - should not login successfully with inval
         users.invalidUser.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Username and password do not match any user in this service'
+    );
 
 });
 
@@ -40,7 +42,9 @@ test('@regression @login Invalid Password - should not login successfully with i
         users.invalidPassword.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Username and password do not match any user in this service'
+    );
     
 
 });
@@ -52,7 +56,9 @@ test('@regression @login Invalid username & Password - should not login successf
         users.invalidPassword.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Username and password do not match any user in this service'
+    );
 
 });
 
@@ -66,7 +72,9 @@ test('@regression @login Empty User - should not login successfully with no user
         users.standardUser.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Username is required'
+    );
     
 
 });
@@ -81,7 +89,9 @@ test('@regression @login Empty Password - should not login successfully with no 
         users.empty.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Password is required'
+    );
     
 
 });
@@ -97,7 +107,9 @@ test('@regression @login Empty User & Password - should not login successfully w
         users.empty.password
     );
 
-    await login.getErrorMessage();
+    await login.getErrorMessage(
+        'Epic sadface: Username is required'
+    );
     
 
 });
@@ -114,5 +126,9 @@ test('@regression @login Locked User - should not login successfully with locked
         users.lockedUser.password
     );
     
+    await login.getErrorMessage(
+        'Epic sadface: Sorry, this user has been locked out.'
+    );
+
 
 });
