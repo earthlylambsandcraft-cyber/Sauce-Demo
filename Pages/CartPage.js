@@ -4,77 +4,97 @@ const { expect } = require("@playwright/test");
 class CartPage {
     constructor(page){
         this.page = page
+
+        this.cartRedirection = page
+            .locator('.shopping_cart_link');
+
+        this.cartTitle = page
+            .getByText('Your Cart');
+
+        this.cartDesc = page
+            .getByText('Description');
+
+        this.quantityHeader = page
+            .getByText('QTY');
+
+        this.itemQty = page
+            .locator('.shopping_cart_badge');
+
+        this.itemName = page
+            .locator('.inventory_item_name');
+
+        this.itemDescriptions = page
+            .locator('.inventory_item_desc');
+
+        this.itemPrices = page
+            .locator('.inventory_item_price');
+
+        this.cartItems = page
+            .locator('.cart_item')
+
+        this.cartCheckOut = page
+            .getByRole('button', { name : 'Checkout' });
+
+        this.continueShop = page
+            .getByRole('button', { name : 'Continue Shopping' });
+        
+        this.itemQuantities = page
+            .locator('.cart_quantity');
     }
 
 
 
 async open() {
     
-    const cartRedirection = this.page.locator('.shopping_cart_link');
-    
-    await cartRedirection.click();
+    await this.cartRedirection.click();
 
 }
 
-async verifyCartPage() {
+async verifyCartPage(
+    expectedTitle, 
+    
+    quantityColumn, 
+    
+    descriptionColumn) {
     
         await expect(this.page).toHaveURL(/cart.html/);
     
-        const cartTitle = this.page.getByText('Your Cart');
+        await expect(this.cartTitle).toBeVisible();
 
-        const cartQty = this.page.getByText('QTY');
+        await expect(this.quantityHeader).toBeVisible();
 
-        const cartDesc = this.page.getByText('Description');
+        await expect(this.cartDesc).toBeVisible();
     
-        await expect(cartTitle).toBeVisible();
+        await expect(this.cartTitle)
+            .toHaveText(expectedTitle);
 
-        await expect(cartQty).toBeVisible();
+        await expect(this.quantityHeader)
+            .toHaveText(quantityColumn);
 
-        await expect(cartDesc).toBeVisible();
-    
-        await expect(cartTitle).toHaveText('Your Cart');
-
-        await expect(cartQty).toHaveText('QTY');
-
-        await expect(cartDesc).toHaveText('Description');
+        await expect(this.cartDesc)
+            .toHaveText(descriptionColumn);
 
     
     }
 
-async getBadgeCount() {
+async getBadgeNumber() {
     
-    const itemQty = this.page.locator('.shopping_cart_badge');
-    
-    const badgeSorting = await itemQty.count();
+        const badgeText = await this.itemQty.textContent();
 
-        const badgeQty = [];
-
-        for ( let i = 0; i < badgeSorting; i ++ ) {
-            
-            const badgeNumber = itemQty.nth(i)
-            
-            const badgeContent = await badgeNumber.textContent();
-
-            badgeQty.push(badgeContent);
-            
-        }
-        
-        return badgeQty;
-     
+        return Number(badgeText);
     }
 
 
-async getItems() {
 
-        const itemDescription = this.page.locator('.inventory_item_name');
+async getItemNames() {
 
-            const descriptionSort = await itemDescription.count();
+            const descriptionSort = await this.itemName.count();
 
             const names = []
 
             for ( let i = 0; i < descriptionSort; i++ ) {
                 
-                const item = itemDescription.nth(i)
+                const item = this.itemName.nth(i)
                 
                 const name = await item.textContent();
 
@@ -87,21 +107,19 @@ async getItems() {
             
 }
 
-async getDescriptions() {
+async getItemDescriptions() {
 
-        const descriptions = this.page.locator('.inventory_item_desc');
-
-        const descSorting = await descriptions.count();
+        const descSorting = await this.itemDescriptions.count();
 
         const descSummary = []
 
         for ( let i = 0; i < descSorting; i++ ) {
             
-            const descListed = descriptions.nth(i);
+            const descListed = this.itemDescriptions.nth(i);
             
-            const description = await descListed.textContent();
+            const itemDescription = await descListed.textContent();
             
-            descSummary.push(description);
+            descSummary.push(itemDescription);
         }
 
         return descSummary;
@@ -110,17 +128,15 @@ async getDescriptions() {
 
 
 
-async getPrices() {
+async getItemPrices() {
 
-    const itemPrice = this.page.locator('.inventory_item_price');
-
-    const priceSort = await itemPrice.count();
+    const priceSort = await this.itemPrices.count();
 
     const prices = [];
 
     for ( let i = 0; i < priceSort; i++ ) {
 
-        const priceSummary = await itemPrice.nth(i).textContent();
+        const priceSummary = await this.itemPrices.nth(i).textContent();
 
         prices.push(priceSummary);
     }
@@ -129,22 +145,21 @@ async getPrices() {
 
 }
 
-async getQuantities() {
+async getItemQuantities() {
 
-    const itemQty = this.page.locator('.cart_quantity');
+    const itemQuantity = await this.itemQuantities.count();
 
-    const itemQtySort = await itemQty.count();
+    const items = [];
 
-    const quantities = [];
+    for ( let i = 0; i < itemQuantity; i++ ) {
+        
+        const itemSummary = await this.itemQuantities.nth(i).textContent();
 
-    for ( let i = 0; i < itemQtySort; i++ ) {
+        items.push(itemSummary);
 
-        const QtySummary = await itemQty.nth(i).textContent();
-
-        quantities.push(QtySummary);
     }
 
-    return quantities
+    return items
 }
 
 
@@ -170,17 +185,13 @@ async getCartSummary() {
 
 async continueShopping() {
 
-    const continueShop = this.page.getByRole('button', { name : 'Continue Shopping' });
-
-    await continueShop.click();
+    await this.continueShop.click();
 
 }
 
 async checkout() {
 
-    const cartCheckOut = this.page.getByRole('button', { name : 'Checkout' });
-
-    await cartCheckOut.click();
+    await this.cartCheckOut.click();
 
 }
 
@@ -200,11 +211,7 @@ async removeProduct(productName) {
 
 async isEmpty() {
 
-    const itemCount = await this.page
-        .locator('.cart_item')
-        .count();
-
-    return itemCount === 0;
+    return await this.cartItems.count() === 0;
 
 }
 
