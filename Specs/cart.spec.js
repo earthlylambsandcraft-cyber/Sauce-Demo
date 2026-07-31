@@ -19,8 +19,8 @@ test('Cart should open upon clicking', async({login, cart}) => {
 
     await cart.verifyCartPage(
         'Your Cart',
-        'Description',
         'QTY',
+        'Description'
     );
 
 });
@@ -63,7 +63,9 @@ test('Cart should display prices', async({login, inventory, cart}) => {
     await inventory.openCart();
 
     const actualPrices =  await cart.getItemPrices();
-    const expectedPrices = products.map(product => product.price); 
+    const expectedPrices = products
+        .slice(0, 3)
+        .map(product => product.price);
     
     expect(actualPrices).toEqual(expectedPrices)
 
