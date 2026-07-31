@@ -202,7 +202,11 @@ test('Open Cart', async ({login, cart, inventory}) => {
 
     await inventory.openCart();
 
-    await cart.verifyCartPage();
+    await cart.verifyCartPage(
+        'Your Cart',
+        'QTY',
+        'Description'
+    );
 
 })
 

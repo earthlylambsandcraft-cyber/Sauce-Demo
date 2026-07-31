@@ -42,7 +42,11 @@ test('Sanity || Complete purchase flow', async({
 
     await inventory.openCart();
 
-    await cart.verifyCartPage();
+    await cart.verifyCartPage(
+        'Your Cart',
+        'QTY',
+        'Description'
+    );
 
     console.log(
     await cart.getCartSummary()
