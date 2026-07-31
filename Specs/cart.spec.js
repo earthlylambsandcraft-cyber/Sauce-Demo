@@ -19,8 +19,8 @@ test('Cart should open upon clicking', async({login, cart}) => {
 
     await cart.verifyCartPage(
         'Your Cart',
+        'Description',
         'QTY',
-        'Description'
     );
 
 });
