@@ -3,27 +3,39 @@ const { expect } = require("@playwright/test");
 class OverviewPage {
     constructor(page) {
         this.page = page
+    
+     this.overviewTitle = page
+        .getByText('Checkout: Overview');
+
+    this.itemQty = page
+        .locator('.shopping_cart_badge');
+
+    this.finishBtn = page
+        .getByRole('button', { name: 'Finish' });
+
+    this.cancel =  page
+        .getByRole('button', { name: 'Cancel' });
     }
 
-async verifyPage() {
+    
 
-        const overviewTitle = this.page.getByText('Checkout: Overview');
 
-        await expect(overviewTitle).toBeVisible();
+async verifyOverviewPage() {
+
+        await expect(this.overviewTitle).toBeVisible();
 
     }
 
 async getBadgeCount() {
     
-    const itemQty = this.page.locator('.shopping_cart_badge');
     
-    const badgeSorting = await itemQty.count();
+    const badgeSorting = await this.itemQty.count();
 
         const badgeQty = [];
 
         for ( let i = 0; i < badgeSorting; i ++ ) {
             
-            const badgeNumber = itemQty.nth(i)
+            const badgeNumber = this.itemQty.nth(i)
             
             const badgeContent = await badgeNumber.textContent();
 
@@ -103,20 +115,14 @@ async getTotal() {
 
 async cancelOrder() {
 
-    const cancel =
-    this.page.getByRole('button', {
-        name: 'Cancel'
-    });
-
-    await cancel.click();
+    
+    await this.cancel.click();
 
 }
 
 async finishOrder() {
 
-        const finishBtn = this.page.getByRole('button', { name: 'Finish' });
-
-        await finishBtn.click();
+        await this.finishBtn.click();
     
 }
 

@@ -22,7 +22,7 @@ class sauceAccount {
     
 
     
-async verifyPage() {
+async verifyLoginPage() {
 
 
     await expect(this.userNameInput).toBeVisible();

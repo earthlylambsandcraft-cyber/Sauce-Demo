@@ -28,7 +28,7 @@ test('Overview should load', async({
 
     await checkout.continueCheckout();
 
-    await overview.verifyPage();
+    await overview.verifyOverviewPage();
 
 })
 

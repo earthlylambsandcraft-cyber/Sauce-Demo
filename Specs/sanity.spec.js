@@ -15,7 +15,7 @@ test('Sanity || Complete purchase flow', async({
      overview
     }) => {    
 
-    await login.verifyPage();
+    await login.verifyLoginPage();
 
     await login.login(
         users.standardUser.username,
@@ -60,7 +60,7 @@ test('Sanity || Complete purchase flow', async({
 
     await checkout.continueCheckout();
 
-    await overview.verifyPage();
+    await overview.verifyOverviewPage();
 
     console.log(
     await overview.getProducts()
